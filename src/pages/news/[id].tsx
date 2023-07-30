@@ -2,11 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { client } from '@/lib/client'
 import Image from 'next/image'
 import Button from '@/components/atoms/button'
-import { ParsedUrlQuery } from 'querystring'
-
-interface Params extends ParsedUrlQuery {
-  id?: string
-}
+import { Params } from '@/types/params'
 
 type Props = {
   data: {
