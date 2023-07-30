@@ -2,6 +2,11 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { client } from '@/lib/client'
 import Image from 'next/image'
 import Button from '@/components/atoms/button'
+import { ParsedUrlQuery } from 'querystring'
+
+interface Params extends ParsedUrlQuery {
+  id?: string
+}
 
 type Props = {
   data: {
@@ -44,7 +49,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await client.get({ endpoint: 'news', contentId: params?.id })
+  const { id } = params as Params
+  const res = await client.get({ endpoint: 'news', contentId: id })
 
   return {
     props: {
