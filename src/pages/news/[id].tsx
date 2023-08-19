@@ -3,6 +3,7 @@ import { client } from '@/lib/client'
 import Image from 'next/image'
 import Button from '@/components/atoms/button'
 import { Params } from '@/types/params'
+import { NextSeo } from 'next-seo'
 
 type Props = {
   data: {
@@ -26,6 +27,7 @@ const NewsDetail: NextPage<Props> = (props) => {
 
   return (
     <>
+      <NextSeo title={props.data.title} />
       <h1>{props.data.title}</h1>
       <Image src={props.data.eyecatch.url} width={1000} height={500} alt={''} />
       <div dangerouslySetInnerHTML={{ __html: props.data.content }}></div>

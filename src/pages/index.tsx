@@ -2,13 +2,32 @@ import styled from 'styled-components'
 import { GetStaticProps, NextPageWithLayout } from 'next'
 import { client } from '@/lib/client'
 import DefaultLayout from '@/components/layout/default-layout'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
-const Home: NextPageWithLayout = (props) => {
+type Props = {
+  data: []
+}
+
+const Home: NextPageWithLayout<Props> = (props) => {
+  const router = useRouter()
+  const [indexState, setIndexState] = useState(props.data)
   console.log(props)
+
+  useEffect(() => {
+    console.log(router)
+  }, [router])
 
   return (
     <>
-      <Main></Main>
+      <button
+        onClick={() => {
+          setIndexState([])
+        }}
+      >
+        button
+      </button>
+      <Main>index page</Main>
     </>
   )
 }
